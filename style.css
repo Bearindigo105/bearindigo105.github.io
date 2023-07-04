@@ -9,6 +9,10 @@ body {
     margin: 0;
 }
 
+h1{
+    font-size: 300%;
+}
+
 header{
     display: flex;
     position: fixed;
@@ -92,3 +96,11 @@ section {
     border: 2px solid #171c19;
 }
 
+.img-force-theme{
+    filter: invert(84%) sepia(19%) saturate(206%) hue-rotate(80deg) brightness(111%) contrast(84%);
+    display: inline;
+}
+
+.contact{
+    font-size: 150%;
+}
