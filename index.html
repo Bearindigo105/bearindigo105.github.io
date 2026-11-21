@@ -138,7 +138,7 @@
           <a href="mailto:mxm7337@psu.edu">Email</a>
           <a href="https://github.com/Bearindigo105" target="_blank" rel="noopener">GitHub</a>
         </p>
-        <p class="hint mono">This page is a 3&times;3 grid. Scroll in any direction and watch the balls react: swipe on a trackpad or phone, or use shift+wheel and the arrow keys.</p>
+        <p class="hint mono">This page is a 3&times;3 grid you can scroll in any direction: swipe on a trackpad or phone, or use shift+wheel and the arrow keys. Move your cursor through the balls, or click empty space to drop more.</p>
       </div>
     </section>
     <section id="hardware" class="room wide">
@@ -189,7 +189,7 @@
       <div class="panel">
         <h2>The engine</h2>
         <p>Every ball on this page is a <code>Particle</code> from <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypescriptPhysics</a>, a 2D engine I wrote from scratch. Gravity is a <code>Force</code>, collisions are elastic with an energy loss, and the window edges are the walls.</p>
-        <p>Scrolling kicks every ball against the direction you move, with bigger balls kicked less. That came from the engine's original demo, where you steered the balls with your scroll wheel. Your cursor pushes them, and clicking empty space drops a new one.</p>
+        <p>Your cursor pushes them, and clicking empty space drops a new one. Scrolling doesn't touch them: moving the page isn't a force, so they stay put while the rooms slide past.</p>
         <div class="controls mono">
           <button type="button" data-engine="gravity">gravity: on</button>
           <button type="button" data-engine="drop">drop 10</button>

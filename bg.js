@@ -44,20 +44,7 @@ resize();
 const count = Math.min(40, Math.floor((bounds.width * bounds.height) / 26000) + 6);
 for (let i = 0; i < count; i++) spawn(Math.random() * bounds.width, Math.random() * bounds.height * 0.5);
 
-// The engine's original interaction: scrolling kicks every ball (bigger balls move less).
-// The page scrolls in 2D, so horizontal scrolling kicks sideways and vertical kicks up/down.
-function kick(dx, dy) {
-  for (const p of physics.particles) {
-    p.v.x -= Math.min(Math.sqrt(Math.abs((dx * 10) / p.m)), 22) * Math.sign(dx);
-    p.v.y -= Math.min(Math.sqrt(Math.abs((dy * 20) / p.m)), 22) * Math.sign(dy);
-  }
-}
-const sc = document.querySelector(".scroller");
-let lastX = sc.scrollLeft, lastY = sc.scrollTop;
-sc.addEventListener("scroll", () => {
-  kick(sc.scrollLeft - lastX, sc.scrollTop - lastY);
-  lastX = sc.scrollLeft; lastY = sc.scrollTop;
-}, { passive: true });
+// Scrolling deliberately does nothing to the balls: moving the page isn't a force on them.
 
 // The cursor pushes balls; clicking empty space drops a new one.
 const mouse = { x: -1e4, y: -1e4 };
