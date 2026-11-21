@@ -11,14 +11,14 @@ const dpr = Math.min(window.devicePixelRatio || 1, 2);
 const bounds = { width: innerWidth, height: innerHeight }; // Physics.update reads .width/.height
 const GRAVITY = new Vector(0, 0.25);
 const COLORS = ["92,255,176", "124,92,255", "255,92,138", "230,241,234"];
-const MAX = 70;
+const MAX = 50;
 
 const physics = new Physics([], GRAVITY);
 
 function spawn(x, y, vx = (Math.random() - 0.5) * 8, vy = (Math.random() - 0.5) * 8) {
-  const m = 14 + Math.random() * 56; // in this engine, mass == diameter
+  const m = 10 + Math.random() * 36; // in this engine, mass == diameter
   const rgb = COLORS[Math.floor(Math.random() * COLORS.length)];
-  const p = new Particle(new Vector(x, y), new Vector(vx, vy), m, 0.9, `rgba(${rgb},${0.12 + Math.random() * 0.22})`);
+  const p = new Particle(new Vector(x, y), new Vector(vx, vy), m, 0.9, `rgba(${rgb},${0.06 + Math.random() * 0.1})`);
   p.forces.push(new Force(new Vector(GRAVITY.x * m, GRAVITY.y * m))); // same as Physics.fromJSON
   physics.particles.push(p);
   if (physics.particles.length > MAX) physics.particles.shift();
@@ -36,7 +36,7 @@ function resize() {
 addEventListener("resize", resize);
 resize();
 
-const count = Math.min(40, Math.floor((innerWidth * innerHeight) / 30000) + 12);
+const count = Math.min(28, Math.floor((innerWidth * innerHeight) / 45000) + 8);
 for (let i = 0; i < count; i++) spawn(Math.random() * bounds.width, Math.random() * bounds.height * 0.6);
 
 // The engine's original interaction: scrolling kicks every ball (bigger balls move less).

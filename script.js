@@ -26,11 +26,11 @@ addEventListener('mousemove', e => { glow.style.left = e.clientX + 'px'; glow.st
 (() => {
   const el = document.querySelector('.typed');
   const roles = [
-    'program FRC robots.',
-    'build weird hardware.',
-    'lead the GVHS wrestling team.',
-    'am CTO @ Formula Theory.',
-    'write physics engines for fun.',
+    'study Electrical Engineering @ Penn State.',
+    'lead avionics for a VTOL aircraft.',
+    'design PCBs.',
+    'drive an FPV car with a steering wheel.',
+    'teach robots to see.',
   ];
   if (reduceMotion) { el.textContent = roles[0]; return; }
   let r = 0, i = 0, deleting = false;
