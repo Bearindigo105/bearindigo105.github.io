@@ -10,8 +10,16 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scrollbar-width: none; }
-html::-webkit-scrollbar { display: none; }
+html, body { height: 100%; overflow: hidden; }
+
+/* The 3x3 world scrolls inside this full-screen box rather than the page itself, so the
+   header, minimap and canvas stay put. (Android Chrome doesn't keep fixed elements pinned
+   while a page wider than the screen scrolls sideways.) */
+.scroller {
+  position: fixed; inset: 0; z-index: 1; overflow: auto; outline: none;
+  scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior: none;
+}
+.scroller::-webkit-scrollbar { display: none; }
 body {
   margin: 0;
   background: var(--paper);
@@ -25,7 +33,7 @@ a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 .mono { font-family: var(--mono); }
 code { font-family: var(--mono); font-size: .9em; }
 
-#bg { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; }
+#bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
 
 /* ---------- fixed chrome ---------- */
 .top {
@@ -56,6 +64,7 @@ code { font-family: var(--mono); font-size: .9em; }
   display: grid;
   grid-template-columns: repeat(3, 100vw);
   grid-auto-rows: minmax(100vh, auto);
+  grid-auto-rows: minmax(100dvh, auto);
 }
 .room {
   position: relative;

@@ -1,10 +1,11 @@
 // 2D page navigation: the rooms form a 3x3 grid, laid out row by row in index.html.
 const rooms = [...document.querySelectorAll('.room')];
+const sc = document.querySelector('.scroller'); // the box the world scrolls inside
 const label = r => r.id === 'home' ? 'Home' : r.querySelector('h2').textContent.replace(' projects', '');
 const at = (row, col) => (row >= 0 && row < 3 && col >= 0 && col < 3) ? rooms[row * 3 + col] : null;
 
 function go(room, smooth = true) {
-  scrollTo({ left: room.offsetLeft, top: room.offsetTop, behavior: smooth ? 'smooth' : 'instant' });
+  sc.scrollTo({ left: room.offsetLeft, top: room.offsetTop, behavior: smooth ? 'smooth' : 'instant' });
   history.replaceState(null, '', '#' + room.id);
 }
 
@@ -46,7 +47,7 @@ document.addEventListener('click', e => {
 
 // Highlight the room under the centre of the screen.
 function current() {
-  const cx = scrollX + innerWidth / 2, cy = scrollY + innerHeight / 2;
+  const cx = sc.scrollLeft + sc.clientWidth / 2, cy = sc.scrollTop + sc.clientHeight / 2;
   return rooms.find(r => cx >= r.offsetLeft && cx < r.offsetLeft + r.offsetWidth &&
                          cy >= r.offsetTop && cy < r.offsetTop + r.offsetHeight) || rooms[4];
 }
@@ -54,13 +55,14 @@ function mark() {
   const r = current();
   cells.forEach((c, i) => c.classList.toggle('here', rooms[i] === r));
 }
-addEventListener('scroll', mark, { passive: true });
+sc.addEventListener('scroll', mark, { passive: true });
 
 // Start in the middle (or at the room named in the URL).
 const start = document.getElementById(location.hash.slice(1));
 const first = start && start.classList.contains('room') ? start : rooms[4];
 go(first, false);
 mark();
+sc.focus({ preventScroll: true }); // so arrow keys and page up/down scroll the world
 // Fonts can change room heights after first layout; re-centre once if the visitor hasn't moved yet.
 addEventListener('load', () => { if (current() === first) go(first, false); });
 // Re-centre only when the width changes (e.g. rotating the phone). Mobile browsers also fire

@@ -52,10 +52,11 @@ function kick(dx, dy) {
     p.v.y -= Math.min(Math.sqrt(Math.abs((dy * 20) / p.m)), 22) * Math.sign(dy);
   }
 }
-let lastX = scrollX, lastY = scrollY;
-addEventListener("scroll", () => {
-  kick(scrollX - lastX, scrollY - lastY);
-  lastX = scrollX; lastY = scrollY;
+const sc = document.querySelector(".scroller");
+let lastX = sc.scrollLeft, lastY = sc.scrollTop;
+sc.addEventListener("scroll", () => {
+  kick(sc.scrollLeft - lastX, sc.scrollTop - lastY);
+  lastX = sc.scrollLeft; lastY = sc.scrollTop;
 }, { passive: true });
 
 // The cursor pushes balls; clicking empty space drops a new one.
