@@ -56,6 +56,35 @@ function mark() {
 }
 addEventListener('scroll', mark, { passive: true });
 
+// Gentle snap: when scrolling stops near a room edge, glide onto it.
+// Rooms taller than the screen also snap their bottom edge, and stay free in between.
+const SNAP = 0.3; // fraction of the screen that counts as "near"
+function nearest(pos, stops, range) {
+  let best = null;
+  for (const s of stops) if (Math.abs(s - pos) < range && (best === null || Math.abs(s - pos) < Math.abs(best - pos))) best = s;
+  return best;
+}
+function snap() {
+  const xs = [0, 1, 2].map(c => rooms[c].offsetLeft);
+  const ys = [];
+  for (let row = 0; row < 3; row++) {
+    const r = rooms[row * 3];
+    ys.push(r.offsetTop);
+    if (r.offsetHeight > innerHeight) ys.push(r.offsetTop + r.offsetHeight - innerHeight);
+  }
+  const x = nearest(scrollX, xs, innerWidth * SNAP);
+  const y = nearest(scrollY, ys, innerHeight * SNAP);
+  const left = x === null ? scrollX : x, top = y === null ? scrollY : y;
+  if (Math.abs(left - scrollX) > 1 || Math.abs(top - scrollY) > 1) scrollTo({ left, top, behavior: 'smooth' });
+}
+// Run once scrolling has been quiet for a moment (works in every browser),
+// but never while a finger is still on the screen.
+let snapTimer, touching = false;
+const later = () => { clearTimeout(snapTimer); if (!touching) snapTimer = setTimeout(snap, 150); };
+addEventListener('scroll', later, { passive: true });
+addEventListener('touchstart', () => { touching = true; clearTimeout(snapTimer); }, { passive: true });
+addEventListener('touchend', () => { touching = false; later(); }, { passive: true });
+
 // Start in the middle (or at the room named in the URL).
 const start = document.getElementById(location.hash.slice(1));
 const first = start && start.classList.contains('room') ? start : rooms[4];
