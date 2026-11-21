@@ -12,196 +12,223 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <canvas id="bg"></canvas>
+
   <header class="top">
-    <a href="#" class="name">Subhash Muthu</a>
+    <a href="#home" class="name">Subhash Muthu</a>
     <nav>
+      <a href="#about">About</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
+      <a href="#hardware">Projects</a>
+      <a href="#engine">Engine</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <canvas id="bg"></canvas>
-    <div class="hero-text">
-      <h1>Subhash<br />Muthu</h1>
-      <p class="lede">Electrical Engineering student at Penn State. I build things that fly, drive and see: VTOL avionics, an FPV race car you drive with a real steering wheel, and vision for competition robots.</p>
-      <p class="links">
-        <a href="mailto:mxm7337@psu.edu">Email</a>
-        <a href="https://github.com/Bearindigo105" target="_blank" rel="noopener">GitHub</a>
-        <a href="#projects">Projects ↓</a>
-      </p>
-    </div>
-    <p class="engine-note mono">These balls run on <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">my own physics engine</a>. Scroll to kick them, click to drop more.</p>
-  </section>
+  <nav class="minimap mono" aria-label="Page map"></nav>
 
-  <main>
-    <section id="about" class="row">
-      <h2>About</h2>
-      <div>
+  <main class="world">
+    <section id="education" class="room">
+      <div class="panel">
+        <h2>Education</h2>
+        <div class="entries">
+        <article class="entry">
+        <div class="entry-head">
+        <h3>The Pennsylvania State University, <span>B.S. Electrical Engineering</span></h3>
+        <span class="date mono">expected May 2030</span>
+        </div>
+        <p class="note">Coursework: CMPEN 270 (digital design), MATH 230 (multivariable calculus), MATH 220 (matrices), ENGR 100, CAS 100A</p>
+        </article>
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Great Valley High School, <span>Malvern PA</span></h3>
+        <span class="date mono">June 2026</span>
+        </div>
+        <p class="note">AP 4s: Physics C Mechanics, Physics C E&amp;M, Calculus BC, Chemistry, Computer Science A</p>
+        </article>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="room">
+      <div class="panel">
+        <h2>About</h2>
+        <div>
         <p>I'm a first-year Electrical Engineering student at Penn State, where I lead the avionics subsystem on the ASME VTOL team.</p>
         <p>Before that I co-founded <a href="https://github.com/Formula-Theory-Automotive-Design" target="_blank" rel="noopener">FTAD</a>, a nonprofit building a 1:10 scale FPV racing competition, and led automation and vision for FRC Team 1640, which competed at the FIRST World Championship.</p>
         <p>I also wrestled varsity for three seasons (captain senior year), was Senior Patrol Leader of my scout troop, and play rhythm guitar in a rock band.</p>
+        </div>
       </div>
     </section>
-
-    <section id="experience" class="row">
-      <h2>Experience</h2>
-      <div class="entries">
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Avionics Subsystem Lead, <span>ASME VTOL Team, Penn State</span></h3>
-            <span class="date mono">Fall 2026 – now</span>
-          </div>
-          <ul>
-            <li>Lead avionics design for a student VTOL aircraft: flight controller, power distribution, radio link, servos and sensors.</li>
-            <li>Make component and integration decisions so the electrical and flight systems work as one vehicle.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Co-founder &amp; Technical Lead, <span><a href="https://github.com/Formula-Theory-Automotive-Design" target="_blank" rel="noopener">FTAD (Formula Theory &amp; Automotive Design)</a>, 501(c)(3)</span></h3>
-            <span class="date mono">2024 – 2026</span>
-          </div>
-          <ul>
-            <li>Co-founded a nonprofit developing a 1:10 scale FPV racing competition with steering-wheel control, and managed the technical budget.</li>
-            <li>Built a working FPV race car prototype driven by a Logitech G920 wheel over USB-to-CRSF.</li>
-            <li>Designed a custom USB-to-CRSF bridge PCB and a bracket mounting it to a Radiomaster Nano ELRS module.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Programmer, Automation &amp; Vision Lead, <span>FRC Team 1640</span></h3>
-            <span class="date mono">2024 – 2026</span>
-          </div>
-          <ul>
-            <li>Led robot vision and autonomous routines using PhotonVision on Orange Pi and YOLOv8/TFLite object detection.</li>
-            <li>Tested Qualcomm Rubik Pi 3 hardware for the team in collaboration with Qualcomm.</li>
-            <li>Pit crew member; competed at the FIRST Championship (Worlds).</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Team Captain, <span>Great Valley HS Wrestling</span></h3>
-            <span class="date mono">2023 – 2026</span>
-          </div>
-          <ul>
-            <li>Three varsity seasons, 45–36 career record over 81 matches, senior team captain.</li>
-            <li>Varsity Athletic Award; 7th place at the 2025 Panther Open.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Senior Patrol Leader, <span>Boy Scout Troop 21, East Goshen PA</span></h3>
-          </div>
-          <ul><li>Led the troop's youth leadership team and ran meetings and activities.</li></ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="education" class="row">
-      <h2>Education</h2>
-      <div class="entries">
-        <article class="entry">
-          <div class="entry-head">
-            <h3>The Pennsylvania State University, <span>B.S. Electrical Engineering</span></h3>
-            <span class="date mono">expected May 2030</span>
-          </div>
-          <p class="note">Coursework: CMPEN 270 (digital design), MATH 230 (multivariable calculus), MATH 220 (matrices), ENGR 100, CAS 100A</p>
-        </article>
-        <article class="entry">
-          <div class="entry-head">
-            <h3>Great Valley High School, <span>Malvern PA</span></h3>
-            <span class="date mono">June 2026</span>
-          </div>
-          <p class="note">AP 4s: Physics C Mechanics, Physics C E&amp;M, Calculus BC, Chemistry, Computer Science A</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="projects" class="row">
-      <h2>Projects</h2>
-      <div class="projects">
-        <article class="project">
-          <h3>Steering-wheel FPV race car</h3>
-          <p>A 1:10 FPV race car driven by a Logitech G920 wheel. Custom PCB bridges USB to CRSF and feeds a Radiomaster Nano ELRS module.</p>
-          <p class="tags mono">PCB · ExpressLRS · CRSF</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://github.com/Bearindigo105/Toaster-Reflow-Oven" target="_blank" rel="noopener">Toaster reflow oven ↗</a></h3>
-          <p>A toaster oven converted into a reflow soldering oven, designed to be easy to assemble.</p>
-          <p class="tags mono">hardware · soldering</p>
-        </article>
-        <article class="project">
-          <h3>FRC robot vision</h3>
-          <p>PhotonVision on Orange Pi plus YOLOv8/TFLite object detection for FRC 1640's autonomous routines.</p>
-          <p class="tags mono">YOLOv8 · TFLite · Orange Pi</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypeScript physics engine ↗</a></h3>
-          <p>A 2D engine written from scratch, with gravity, elastic collisions and boundaries. It's what's running at the top of this page.</p>
-          <p class="tags mono">TypeScript</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://github.com/Bearindigo105/Brr-Brr-Patapim" target="_blank" rel="noopener">Turret math ↗</a></h3>
-          <p>Turret aiming math for an FRC robot, built with a teammate.</p>
-          <p class="tags mono">Java</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://github.com/Bearindigo105/BLine-Helper" target="_blank" rel="noopener">BLine Helper ↗</a></h3>
-          <p>Keeps B-Line paths in sync across autonomous routines.</p>
-          <p class="tags mono">Python</p>
-        </article>
-        <article class="project">
-          <h3>Trebuchets</h3>
-          <p>The first, for AP Physics, threw 80 yards. Senior year I built a second, larger one with a better-tuned stall point.</p>
-          <p class="tags mono">mechanics</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://cad.onshape.com/documents/43364c53dc0f21870850ffd2/w/888b1502247957428aac60cd/e/1335f61f863b6c1a4284775c" target="_blank" rel="noopener">1:10 RC car chassis ↗</a></h3>
-          <p>Designed for my team, the Flying Pigs, in our local <a href="https://github.com/Formula-Theory-Automotive-Design" target="_blank" rel="noopener">FTAD</a> chapter. Modeled in Onshape and 3D-printed in PETG.</p>
-          <p class="tags mono">Onshape · 3D printing</p>
-        </article>
-        <article class="project">
-          <h3>Aircraft concepts</h3>
-          <p>CAD designs for a <a href="https://cad.onshape.com/documents/9e52573f5e8fe26182fa5642/w/c192ed39beab64fd837278b0/e/f01ad49aabf0fdb80fc43a3e" target="_blank" rel="noopener">monocopter ↗</a> and a <a href="https://cad.onshape.com/documents/cd00552c6ca269d3dc29a28d/w/c1889e42d9ae4f0433115a82/e/f00fe57d209d45d4310d8d69" target="_blank" rel="noopener">slow-flyer ↗</a> aircraft.</p>
-          <p class="tags mono">Onshape · CAD</p>
-        </article>
-        <article class="project">
-          <h3><a href="https://github.com/Bearindigo105/distance-sensor-processing" target="_blank" rel="noopener">SPAD distance viz ↗</a></h3>
-          <p>A Processing sketch that visualises SPAD-array distance sensor data.</p>
-          <p class="tags mono">Processing</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="row">
-      <h2>Skills</h2>
-      <dl class="skills">
+    <section id="skills" class="room">
+      <div class="panel">
+        <h2>Skills</h2>
+        <dl class="skills">
         <dt>Hardware</dt>
         <dd>PCB design, microcontrollers (ESP32), flight controllers, ExpressLRS/CRSF radio links, digital logic and Verilog, CAD, 3D printing (PETG)</dd>
         <dt>Embedded</dt>
         <dd>Single-board computers (Orange Pi, Qualcomm Rubik Pi 3)</dd>
         <dt>Software</dt>
-        <dd>Linux (Arch, Ubuntu; Debian server admin), Python and C++, PhotonVision, YOLOv8/TFLite</dd>
-      </dl>
+        <dd>Linux (Arch, Ubuntu; Debian server admin), Java, Python, C, C++, C#, PhotonVision, YOLOv8/TFLite</dd>
+        </dl>
+      </div>
     </section>
-
-    <section id="contact" class="row">
-      <h2>Contact</h2>
-      <ul class="contact">
+    <section id="experience" class="room wide">
+      <div class="panel">
+        <h2>Experience</h2>
+        <div class="entries">
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Avionics Subsystem Lead, <span>ASME VTOL Team, Penn State</span></h3>
+        <span class="date mono">Fall 2026 – now</span>
+        </div>
+        <ul>
+        <li>Lead avionics design for a student VTOL aircraft: flight controller, power distribution, radio link, servos and sensors.</li>
+        <li>Make component and integration decisions so the electrical and flight systems work as one vehicle.</li>
+        </ul>
+        </article>
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Co-founder &amp; Technical Lead, <span><a href="https://github.com/Formula-Theory-Automotive-Design" target="_blank" rel="noopener">FTAD (Formula Theory &amp; Automotive Design)</a>, 501(c)(3)</span></h3>
+        <span class="date mono">2024 – 2026</span>
+        </div>
+        <ul>
+        <li>Co-founded a nonprofit developing a 1:10 scale FPV racing competition with steering-wheel control, and managed the technical budget.</li>
+        <li>Built a working FPV race car prototype driven by a Logitech G920 wheel over USB-to-CRSF.</li>
+        <li>Designed a custom USB-to-CRSF bridge PCB and a bracket mounting it to a Radiomaster Nano ELRS module.</li>
+        </ul>
+        </article>
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Programmer, Automation &amp; Vision Lead, <span>FRC Team 1640</span></h3>
+        <span class="date mono">2024 – 2026</span>
+        </div>
+        <ul>
+        <li>Led robot vision and autonomous routines using PhotonVision on Orange Pi and YOLOv8/TFLite object detection.</li>
+        <li>Tested Qualcomm Rubik Pi 3 hardware for the team in collaboration with Qualcomm.</li>
+        <li>Pit crew member; competed at the FIRST Championship (Worlds).</li>
+        </ul>
+        </article>
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Team Captain, <span>Great Valley HS Wrestling</span></h3>
+        <span class="date mono">2023 – 2026</span>
+        </div>
+        <ul>
+        <li>Three varsity seasons, 45–36 career record over 81 matches, senior team captain.</li>
+        <li>Varsity Athletic Award; 7th place at the 2025 Panther Open.</li>
+        </ul>
+        </article>
+        <article class="entry">
+        <div class="entry-head">
+        <h3>Senior Patrol Leader, <span>Boy Scout Troop 21, East Goshen PA</span></h3>
+        </div>
+        <ul><li>Led the troop's youth leadership team and ran meetings and activities.</li></ul>
+        </article>
+        </div>
+      </div>
+    </section>
+    <section id="home" class="room hero">
+      <div class="hero-text">
+        <h1>Subhash<br />Muthu</h1>
+        <p class="lede">Electrical Engineering student at Penn State. I build things that fly, drive and see: VTOL avionics, an FPV race car you drive with a real steering wheel, and vision for competition robots.</p>
+        <p class="links">
+          <a href="mailto:mxm7337@psu.edu">Email</a>
+          <a href="https://github.com/Bearindigo105" target="_blank" rel="noopener">GitHub</a>
+        </p>
+        <p class="hint mono">This page is a 3&times;3 grid. Scroll in any direction and watch the balls react: swipe on a trackpad or phone, or use shift+wheel and the arrow keys.</p>
+      </div>
+    </section>
+    <section id="hardware" class="room wide">
+      <div class="panel">
+        <h2>Hardware projects</h2>
+        <div class="projects">
+          <article class="project">
+          <h3>Steering-wheel FPV race car</h3>
+          <p>A 1:10 FPV race car driven by a Logitech G920 wheel. Custom PCB bridges USB to CRSF and feeds a Radiomaster Nano ELRS module.</p>
+          <p class="tags mono">PCB · ExpressLRS · CRSF</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://github.com/Bearindigo105/Toaster-Reflow-Oven" target="_blank" rel="noopener">Toaster reflow oven ↗</a></h3>
+          <p>A toaster oven converted into a reflow soldering oven, designed to be easy to assemble.</p>
+          <p class="tags mono">hardware · soldering</p>
+          </article>
+          <article class="project">
+          <h3>Trebuchets</h3>
+          <p>The first, for AP Physics, threw 80 yards. Senior year I built a second, larger one with a better-tuned stall point.</p>
+          <p class="tags mono">mechanics</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://cad.onshape.com/documents/43364c53dc0f21870850ffd2/w/888b1502247957428aac60cd/e/1335f61f863b6c1a4284775c" target="_blank" rel="noopener">1:10 RC car chassis ↗</a></h3>
+          <p>Designed for my team, the Flying Pigs, in our local <a href="https://github.com/Formula-Theory-Automotive-Design" target="_blank" rel="noopener">FTAD</a> chapter. Modeled in Onshape and 3D-printed in PETG.</p>
+          <p class="tags mono">Onshape · 3D printing</p>
+          </article>
+          <article class="project">
+          <h3>Aircraft concepts</h3>
+          <p>CAD designs for a <a href="https://cad.onshape.com/documents/9e52573f5e8fe26182fa5642/w/c192ed39beab64fd837278b0/e/f01ad49aabf0fdb80fc43a3e" target="_blank" rel="noopener">monocopter ↗</a> and a <a href="https://cad.onshape.com/documents/cd00552c6ca269d3dc29a28d/w/c1889e42d9ae4f0433115a82/e/f00fe57d209d45d4310d8d69" target="_blank" rel="noopener">slow-flyer ↗</a> aircraft.</p>
+          <p class="tags mono">Onshape · CAD</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="room">
+      <div class="panel">
+        <h2>Contact</h2>
+        <ul class="contact">
         <li><a href="mailto:mxm7337@psu.edu"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5Zm2 2v.5l8 5 8-5V7H4Zm16 2.8-8 5-8-5V17h16V9.8Z"/></svg> mxm7337@psu.edu</a></li>
         <li><a href="https://github.com/Bearindigo105" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg> github.com/Bearindigo105</a></li>
         <li><a href="https://discord.com/users/904148626119475210" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.5 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg> Discord</a></li>
         <li><a href="https://www.facebook.com/profile.php?id=100094434697083" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12Z"/></svg> Facebook</a></li>
-      </ul>
+        </ul>
+        <p class="copy mono">&copy; <span id="year"></span> Subhash Muthu</p>
+      </div>
+    </section>
+    <section id="engine" class="room">
+      <div class="panel">
+        <h2>The engine</h2>
+        <p>Every ball on this page is a <code>Particle</code> from <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypescriptPhysics</a>, a 2D engine I wrote from scratch. Gravity is a <code>Force</code>, collisions are elastic with an energy loss, and the window edges are the walls.</p>
+        <p>Scrolling kicks every ball against the direction you move, with bigger balls kicked less. That came from the engine's original demo, where you steered the balls with your scroll wheel. Your cursor pushes them, and clicking empty space drops a new one.</p>
+        <div class="controls mono">
+          <button type="button" data-engine="gravity">gravity: on</button>
+          <button type="button" data-engine="drop">drop 10</button>
+          <button type="button" data-engine="clear">clear</button>
+        </div>
+      </div>
+    </section>
+    <section id="software" class="room wide">
+      <div class="panel">
+        <h2>Software projects</h2>
+        <div class="projects">
+          <article class="project">
+          <h3>FRC robot vision</h3>
+          <p>PhotonVision on Orange Pi plus YOLOv8/TFLite object detection for FRC 1640's autonomous routines.</p>
+          <p class="tags mono">YOLOv8 · TFLite · Orange Pi</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypeScript physics engine ↗</a></h3>
+          <p>A 2D engine written from scratch, with gravity, elastic collisions and boundaries. It's what's running at the top of this page.</p>
+          <p class="tags mono">TypeScript</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://github.com/Bearindigo105/Brr-Brr-Patapim" target="_blank" rel="noopener">Turret math ↗</a></h3>
+          <p>Turret aiming math for an FRC robot, built with a teammate.</p>
+          <p class="tags mono">Java</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://github.com/Bearindigo105/BLine-Helper" target="_blank" rel="noopener">BLine Helper ↗</a></h3>
+          <p>Keeps B-Line paths in sync across autonomous routines.</p>
+          <p class="tags mono">Python</p>
+          </article>
+          <article class="project">
+          <h3><a href="https://github.com/Bearindigo105/distance-sensor-processing" target="_blank" rel="noopener">SPAD distance viz ↗</a></h3>
+          <p>A Processing sketch that visualises SPAD-array distance sensor data.</p>
+          <p class="tags mono">Processing</p>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="mono">© <span id="year"></span> Subhash Muthu</footer>
-
+  <script src="world.js"></script>
   <script type="module" src="bg.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

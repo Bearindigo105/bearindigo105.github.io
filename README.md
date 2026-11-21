@@ -3,7 +3,8 @@
 Personal site. Plain HTML/CSS/JS, no build step.
 
 - `index.html` / `style.css`: page and styles
-- `bg.js`: interactive hero background (scroll to kick the balls, click to spawn more)
+- `world.js`: the page is a 3x3 grid of rooms that scrolls in 2D (minimap, edge links)
+- `bg.js`: physics background across the whole window (scrolling kicks the balls in the direction you move, click to spawn more)
 - `physics/`: JS copy of [TypescriptPhysics](https://github.com/Bearindigo105/TypescriptPhysics) (`vector`, `force`, `particle`, `physics`). Re-sync it if the engine changes.
 
 Run locally (ES modules don't load over `file://`):
