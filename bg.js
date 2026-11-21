@@ -55,6 +55,44 @@ sc.addEventListener("scroll", () => {
   lastX = sc.scrollLeft; lastY = sc.scrollTop;
 }, { passive: true });
 
+// Apply a scroll shift in small steps, and after each step push balls out of the walls and
+// out of each other (positions only, speeds untouched). Shifting everything at once in one
+// go let balls near a wall get crammed deep into each other, which the engine's one-pass
+// collision step then took many ticks to undo, so piles looked squishy.
+const STEP = 4;   // px per sub-step
+const PASSES = 12; // max separation passes per sub-step (stops early once nothing overlaps)
+function separate() {
+  const ps = physics.particles;
+  for (let pass = 0; pass < PASSES; pass++) {
+    let worst = 0;
+    for (const p of ps) {
+      const r = p.m / 2;
+      p.s.x = Math.min(Math.max(p.s.x, r), bounds.width - r);
+      p.s.y = Math.min(Math.max(p.s.y, r), bounds.height - r);
+    }
+    for (let i = 0; i < ps.length; i++) {
+      for (let j = i + 1; j < ps.length; j++) {
+        const a = ps[i], b = ps[j];
+        const dx = a.s.x - b.s.x, dy = a.s.y - b.s.y, d = Math.hypot(dx, dy);
+        const overlap = (a.m + b.m) / 2 - d;
+        if (overlap <= 0 || d === 0) continue;
+        if (overlap > worst) worst = overlap;
+        const nx = dx / d, ny = dy / d, half = overlap / 2;
+        a.s.x += nx * half; a.s.y += ny * half;
+        b.s.x -= nx * half; b.s.y -= ny * half;
+      }
+    }
+    if (worst < 0.5) break;
+  }
+}
+function shift(dx, dy) {
+  const steps = Math.max(1, Math.ceil(Math.max(Math.abs(dx), Math.abs(dy)) / STEP));
+  for (let k = 0; k < steps; k++) {
+    for (const p of physics.particles) { p.s.x -= dx / steps; p.s.y -= dy / steps; }
+    separate();
+  }
+}
+
 // The cursor pushes balls; clicking empty space drops a new one.
 const mouse = { x: -1e4, y: -1e4 };
 addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
@@ -86,10 +124,8 @@ if (reduceMotion) {
   draw();
 } else {
   (function frame() {
-    if (shiftX || shiftY) {
-      for (const p of physics.particles) { p.s.x -= shiftX; p.s.y -= shiftY; }
-      shiftX = shiftY = 0;
-    }
+    if (shiftX || shiftY) shift(shiftX, shiftY);
+    shiftX = shiftY = 0;
     for (const p of physics.particles) {
       const dx = p.s.x - mouse.x, dy = p.s.y - mouse.y, d = Math.hypot(dx, dy) || 1;
       const r = 70 + p.m / 2;
