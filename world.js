@@ -9,20 +9,29 @@ function go(room, smooth = true) {
   history.replaceState(null, '', '#' + room.id);
 }
 
-// Doors: small labelled links on each room's edges pointing to its neighbours.
-const dirs = { up: [-1, 0, '↑ '], down: [1, 0, '↓ '], left: [0, -1, '← '], right: [0, 1, ''] };
-rooms.forEach((room, i) => {
-  const row = Math.floor(i / 3), col = i % 3;
-  for (const [dir, [dr, dc, pre]] of Object.entries(dirs)) {
-    const next = at(row + dr, col + dc);
+// Doors: four arrows pinned to the screen edges, always pointing at the neighbours of the
+// room you're in (updated as you scroll). On phones the side arrows show just the symbol.
+const narrow = matchMedia('(max-width: 760px)');
+const dirs = { up: [-1, 0, '↑'], down: [1, 0, '↓'], left: [0, -1, '←'], right: [0, 1, '→'] };
+const doors = Object.fromEntries(Object.keys(dirs).map(dir => {
+  const a = document.createElement('a');
+  a.className = 'door ' + dir;
+  document.body.appendChild(a);
+  return [dir, a];
+}));
+function updateDoors(room) {
+  const i = rooms.indexOf(room), row = Math.floor(i / 3), col = i % 3;
+  for (const [dir, [dr, dc, arrow]] of Object.entries(dirs)) {
+    const a = doors[dir], next = at(row + dr, col + dc);
+    a.style.display = next ? '' : 'none';
     if (!next) continue;
-    const a = document.createElement('a');
-    a.className = 'door ' + dir;
     a.href = '#' + next.id;
-    a.textContent = pre + label(next) + (dir === 'right' ? ' →' : '');
-    room.appendChild(a);
+    a.setAttribute('aria-label', 'Go to ' + label(next));
+    const side = dir === 'left' || dir === 'right';
+    a.textContent = side && narrow.matches ? arrow
+      : dir === 'right' ? label(next) + ' ' + arrow : arrow + ' ' + label(next);
   }
-});
+}
 
 // Minimap.
 const map = document.querySelector('.minimap');
@@ -54,6 +63,7 @@ function current() {
 function mark() {
   const r = current();
   cells.forEach((c, i) => c.classList.toggle('here', rooms[i] === r));
+  updateDoors(r);
 }
 sc.addEventListener('scroll', mark, { passive: true });
 

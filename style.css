@@ -84,17 +84,17 @@ code { font-family: var(--mono); font-size: .9em; }
 .panel p { margin: 0 0 14px; }
 .panel p:last-child { margin-bottom: 0; }
 
-/* edge arrows pointing at neighbouring rooms (added by world.js) */
+/* edge arrows pointing at the current room's neighbours (added by world.js) */
 .door {
-  position: absolute; z-index: 2; font-family: var(--mono); font-size: .8rem;
+  position: fixed; z-index: 10; font-family: var(--mono); font-size: .8rem;
   text-decoration: none; color: var(--muted); background: rgba(244, 241, 234, .85); padding: 4px 10px;
   white-space: nowrap;
 }
 .door:hover { color: var(--accent); }
 .door.up    { top: calc(var(--top) + 14px); left: 50%; transform: translateX(-50%); }
 .door.down  { bottom: 18px; left: 50%; transform: translateX(-50%); }
-.door.left  { left: 16px; top: 50vh; }
-.door.right { right: 16px; top: 50vh; }
+.door.left  { left: 16px; top: 50%; transform: translateY(-50%); }
+.door.right { right: 16px; top: 50%; transform: translateY(-50%); }
 
 /* ---------- hero ---------- */
 .hero { justify-content: flex-start; padding-top: calc(var(--top) + 10vh); }
@@ -154,7 +154,10 @@ code { font-family: var(--mono); font-size: .9em; }
   .entry-head { flex-direction: column; gap: 2px; }
   .skills { grid-template-columns: 1fr; gap: 2px; }
   .skills dd { margin-bottom: 10px; }
-  .door.left, .door.right { display: none; }
+  .door.left, .door.right { padding: 12px 10px; font-size: 1.5rem; line-height: 1; color: var(--ink); }
+  .door.left  { left: 4px; }
+  .door.right { right: 4px; }
+  .door.down  { bottom: 12px; }
   .minimap { right: 10px; bottom: 10px; }
   .minimap a { width: 22px; height: 18px; font-size: 0; }
 }
