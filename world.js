@@ -63,6 +63,14 @@ go(first, false);
 mark();
 // Fonts can change room heights after first layout; re-centre once if the visitor hasn't moved yet.
 addEventListener('load', () => { if (current() === first) go(first, false); });
-addEventListener('resize', () => go(current(), false));
+// Re-centre only when the width changes (e.g. rotating the phone). Mobile browsers also fire
+// resize whenever the address bar slides in or out while you swipe; re-centring on those
+// yanked you back to the room you were leaving.
+let lastWidth = innerWidth;
+addEventListener('resize', () => {
+  if (innerWidth === lastWidth) return;
+  lastWidth = innerWidth;
+  go(current(), false);
+});
 
 document.getElementById('year').textContent = new Date().getFullYear();
