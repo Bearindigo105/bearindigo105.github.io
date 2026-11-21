@@ -56,7 +56,7 @@ sc.addEventListener("scroll", () => {
 }, { passive: true });
 
 // Apply a scroll shift in small steps, and after each step push balls out of the walls and
-// out of each other (positions only, speeds untouched). Shifting everything at once in one
+// out of each other (positions only here; the bounce is added in shift() below). Shifting everything at once in one
 // go let balls near a wall get crammed deep into each other, which the engine's one-pass
 // collision step then took many ticks to undo, so piles looked squishy.
 const STEP = 4;   // px per sub-step
@@ -85,12 +85,30 @@ function separate() {
     if (worst < 0.5) break;
   }
 }
+// A ball only gets speed if something pushed it during the shift: the screen edge (a wall moving
+// at your scroll speed) or a ball that was pushed. How far it got pushed back this tick is the
+// wall's speed relative to it, so it bounces off with the engine's own elasticity, like a ball
+// hit by a moving paddle. Balls nothing touched keep their speed exactly.
+const MAX_PUSH = 14; // cap on the speed one tick of pushing can add (px/tick)
 function shift(dx, dy) {
+  const ps = physics.particles;
+  const start = ps.map(p => [p.s.x, p.s.y]);
   const steps = Math.max(1, Math.ceil(Math.max(Math.abs(dx), Math.abs(dy)) / STEP));
   for (let k = 0; k < steps; k++) {
-    for (const p of physics.particles) { p.s.x -= dx / steps; p.s.y -= dy / steps; }
+    for (const p of ps) { p.s.x -= dx / steps; p.s.y -= dy / steps; }
     separate();
   }
+  ps.forEach((p, i) => {
+    const cx = p.s.x - start[i][0] + dx, cy = p.s.y - start[i][1] + dy; // pushed-back distance
+    if (Math.abs(cx) < 0.01 && Math.abs(cy) < 0.01) return;
+    let gx = cx * (1 + p.elasticity), gy = cy * (1 + p.elasticity);
+    const g = Math.hypot(gx, gy);
+    if (g > MAX_PUSH) { gx *= MAX_PUSH / g; gy *= MAX_PUSH / g; }
+    // only add speed away from the push if the ball isn't already moving away faster
+    const n = Math.hypot(cx, cy), nx = cx / n, ny = cy / n;
+    const along = p.v.x * nx + p.v.y * ny, want = Math.hypot(gx, gy);
+    if (along < want) { p.v.x += nx * (want - along); p.v.y += ny * (want - along); }
+  });
 }
 
 // The cursor pushes balls; clicking empty space drops a new one.
