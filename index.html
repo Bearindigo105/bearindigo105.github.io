@@ -189,7 +189,7 @@
       <div class="panel">
         <h2>The engine</h2>
         <p>Every ball on this page is a <code>Particle</code> from <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypescriptPhysics</a>, a 2D engine I wrote from scratch. Gravity is a <code>Force</code>, collisions are elastic with an energy loss, and the window edges are the walls.</p>
-        <p>Scrolling kicks every ball against the direction you move, with bigger balls kicked less. That came from the engine's original demo, where you steered the balls with your scroll wheel. Your cursor pushes them, and clicking empty space drops a new one.</p>
+        <p>Scrolling moves every ball by exactly the distance you scrolled, the opposite way, without adding any speed, then the normal physics step runs, so balls pile up against the walls as you move. Your cursor pushes them, and clicking empty space drops a new one.</p>
         <div class="controls mono">
           <button type="button" data-engine="gravity">gravity: on</button>
           <button type="button" data-engine="drop">drop 10</button>

@@ -44,18 +44,14 @@ resize();
 const count = Math.min(40, Math.floor((bounds.width * bounds.height) / 26000) + 6);
 for (let i = 0; i < count; i++) spawn(Math.random() * bounds.width, Math.random() * bounds.height * 0.5);
 
-// The engine's original interaction: scrolling kicks every ball (bigger balls move less).
-// The page scrolls in 2D, so horizontal scrolling kicks sideways and vertical kicks up/down.
-function kick(dx, dy) {
-  for (const p of physics.particles) {
-    p.v.x -= Math.min(Math.sqrt(Math.abs((dx * 10) / p.m)), 22) * Math.sign(dx);
-    p.v.y -= Math.min(Math.sqrt(Math.abs((dy * 20) / p.m)), 22) * Math.sign(dy);
-  }
-}
+// Scrolling moves the balls by exactly the scrolled distance, the other way (scroll down 100px,
+// they move up 100px), without changing their speed. The shift is applied at the start of the
+// next tick, and the normal physics step (gravity, collisions, walls) still runs in that tick,
+// so a ball shifted into a wall stops there.
 const sc = document.querySelector(".scroller");
-let lastX = sc.scrollLeft, lastY = sc.scrollTop;
+let lastX = sc.scrollLeft, lastY = sc.scrollTop, shiftX = 0, shiftY = 0;
 sc.addEventListener("scroll", () => {
-  kick(sc.scrollLeft - lastX, sc.scrollTop - lastY);
+  shiftX += sc.scrollLeft - lastX; shiftY += sc.scrollTop - lastY;
   lastX = sc.scrollLeft; lastY = sc.scrollTop;
 }, { passive: true });
 
@@ -90,6 +86,10 @@ if (reduceMotion) {
   draw();
 } else {
   (function frame() {
+    if (shiftX || shiftY) {
+      for (const p of physics.particles) { p.s.x -= shiftX; p.s.y -= shiftY; }
+      shiftX = shiftY = 0;
+    }
     for (const p of physics.particles) {
       const dx = p.s.x - mouse.x, dy = p.s.y - mouse.y, d = Math.hypot(dx, dy) || 1;
       const r = 70 + p.m / 2;
