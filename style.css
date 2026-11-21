@@ -40,15 +40,15 @@ code { font-family: var(--mono); font-size: .9em; }
 .minimap {
   position: fixed; right: 20px; bottom: 20px; z-index: 10;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
-  padding: 6px; background: var(--paper); border: 1px solid var(--ink);
+  padding: 6px; background: rgba(244, 241, 234, .85);
 }
 .minimap a {
   display: grid; place-items: center; width: 62px; height: 36px;
   font-size: .62rem; text-decoration: none; color: var(--muted);
   border: 1px solid var(--rule); line-height: 1.1; text-align: center;
 }
-.minimap a:hover { color: var(--ink); border-color: var(--ink); }
-.minimap a.here { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.minimap a:hover { color: var(--ink); }
+.minimap a.here { color: var(--ink); font-weight: 500; border-color: var(--ink); }
 
 /* ---------- the 3x3 world ---------- */
 .world {
@@ -64,7 +64,7 @@ code { font-family: var(--mono); font-size: .9em; }
 }
 .panel {
   width: 100%; max-width: 640px;
-  background: var(--paper); border: 1px solid var(--ink);
+  background: rgba(244, 241, 234, .86);
   padding: 32px 36px;
 }
 .room.wide .panel { max-width: 980px; }
@@ -78,10 +78,10 @@ code { font-family: var(--mono); font-size: .9em; }
 /* edge arrows pointing at neighbouring rooms (added by world.js) */
 .door {
   position: absolute; z-index: 2; font-family: var(--mono); font-size: .8rem;
-  text-decoration: none; background: var(--paper); border: 1px solid var(--ink); padding: 4px 10px;
+  text-decoration: none; color: var(--muted); background: rgba(244, 241, 234, .85); padding: 4px 10px;
   white-space: nowrap;
 }
-.door:hover { background: var(--ink); color: var(--paper); }
+.door:hover { color: var(--accent); }
 .door.up    { top: calc(var(--top) + 14px); left: 50%; transform: translateX(-50%); }
 .door.down  { bottom: 18px; left: 50%; transform: translateX(-50%); }
 .door.left  { left: 16px; top: 50vh; }
@@ -130,7 +130,7 @@ code { font-family: var(--mono); font-size: .9em; }
   font: inherit; font-size: .85rem; cursor: pointer;
   background: var(--paper); color: var(--ink); border: 1px solid var(--ink); padding: 6px 14px;
 }
-.controls button:hover { background: var(--ink); color: var(--paper); }
+.controls button:hover { color: var(--accent); border-color: var(--accent); }
 
 @media (max-width: 760px) {
   body { font-size: 16px; }
