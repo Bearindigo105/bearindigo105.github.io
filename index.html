@@ -188,8 +188,8 @@
     <section id="engine" class="room">
       <div class="panel">
         <h2>The engine</h2>
-        <p>Every ball on this page is a <code>Particle</code> from <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypescriptPhysics</a>, a 2D engine I wrote from scratch. Gravity is a <code>Force</code>, collisions are elastic with an energy loss, and the window edges are the walls.</p>
-        <p>Your cursor pushes them, and clicking empty space drops a new one. Scrolling doesn't touch them: moving the page isn't a force, so they stay put while the rooms slide past.</p>
+        <p>Every ball on this page is a <code>Particle</code> from <a href="https://github.com/Bearindigo105/TypescriptPhysics" target="_blank" rel="noopener">TypescriptPhysics</a>, a 2D engine I wrote from scratch. Gravity is a <code>Force</code>, collisions are elastic with an energy loss, and each room's edges are its walls.</p>
+        <p>Your cursor pushes them, and clicking empty space drops a new one. Each room is its own box with its own floor, and your screen is a camera over the whole grid: scrolling moves the camera, not the balls, so they slide past exactly like the text does.</p>
         <div class="controls mono">
           <button type="button" data-engine="gravity">gravity: on</button>
           <button type="button" data-engine="drop">drop 10</button>
